@@ -1,0 +1,73 @@
+body {
+    color: seashell;
+    background-color: midnightblue ;
+}
+
+h1 {
+    position: absolute;
+    left: 300px;
+    top: 200px;
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+}
+ 
+
+.table {
+    font-size: 30px;
+    padding: 1px;
+    position: absolute;
+    bottom: 300px;
+    left: 300px;
+    color: orange
+}
+
+#id,
+#marks,
+#grade {
+    padding: 2px 100px;
+
+}
+
+#headrow {
+    color: red;
+    background-color: grey;
+    font-weight: 600;
+}
+
+#A,
+#B {
+    color: white;
+    background-color: darkgreen;
+}
+
+#C,
+#D {
+    color: darkgreen;
+    background-color: white;
+}
+
+#F {
+    color: black;
+    background-color: red;
+    font-weight: bold;
+}
+
+
+  .footer {
+    font-family: arial;
+    position: absolute;
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: black;
+    z-index: 0;
+    font-size: 20px;
+    padding: 0px 10px 5px;
+    margin: 0;
+  }
