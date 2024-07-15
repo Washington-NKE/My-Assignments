@@ -54,9 +54,6 @@ html += `  </table>
 </div>
  `
 
-console.log(html);
-
-
 
 function determineGrade(average) {
     if (average >= 70) {
@@ -77,3 +74,31 @@ function determineGrade(average) {
 
 
 document.querySelector('.display-js').innerHTML = html;
+
+//Fuction to fetch and parse the csv file
+function fetchCSV() {
+    fetch('data.csv')
+        .then(response => response.text())
+        .then(data => {
+            Papa.parse(data, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                   console.log(results.data);
+                    // Process the CSV data here
+                    displayData(results.data);
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching the CSV file:', error));
+        //return results.data;
+}
+
+// Function to display the CSV data
+function displayData(data) {
+    data.forEach(row => {
+        console.log(row);
+    });
+}
+
+fetchCSV();
