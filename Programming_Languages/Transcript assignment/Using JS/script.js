@@ -1,7 +1,5 @@
 let studentMarks = [];
 
-
-
 //Fuction to fetch and parse the csv file
 function fetchCSV() {
    return fetch('data.csv')
