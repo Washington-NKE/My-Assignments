@@ -1,25 +1,4 @@
-let studentMarks = [{
-    no: 1,
-    studentId: '0705',
-    name: 'Washington',
-    ccs2102: 9,
-    ccs2103: 4,
-    sas2101: 7
-},  {
-    no: 2,
-    studentId: '0727',
-    name: 'John',
-    ccs2102: 54,
-    ccs2103: 78,
-    sas2101: 52
-}, {
-    no: 3,
-    studentId: '0762',
-    name: 'Nyambu',
-    ccs2102: 76,
-    ccs2103: 72,
-    sas2101: 21
-}];
+let studentMarks = [];
 
 
 
