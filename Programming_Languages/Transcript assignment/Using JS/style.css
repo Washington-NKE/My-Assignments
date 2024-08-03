@@ -1,6 +1,10 @@
+* {
+    box-sizing: border-box;
+}
 body {
     color: seashell;
     background-color: midnightblue ;
+    display: flex;
 }
 
 h1 {
@@ -23,7 +27,11 @@ h1 {
     position: absolute;
     bottom: 300px;
     left: 300px;
-    color: orange
+    color: orange;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+    display: flexbox;
 }
 
 #id,
@@ -39,16 +47,23 @@ h1 {
     font-weight: 600;
 }
 
-#A,
+#A {
+    color: aqua;
+    background-color: indigo;
+}
 #B {
     color: white;
     background-color: darkgreen;
 }
 
-#C,
-#D {
+#C{
     color: darkgreen;
     background-color: white;
+}
+
+#D {
+    color: orange;
+    background-color: grey;
 }
 
 #F {
