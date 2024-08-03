@@ -1,5 +1,5 @@
 // Function to fetch and parse the CSV file
-function fetchCSV() {
+export function fetchCSV() {
     fetch('data.csv')
         .then(response => response.text())
         .then(data => {
@@ -17,7 +17,7 @@ function fetchCSV() {
 }
 
 // Function to display the CSV data (for demonstration purposes)
-function displayData(data) {
+export function displayData(data) {
     data.forEach(row => {
         console.log(row);
     });

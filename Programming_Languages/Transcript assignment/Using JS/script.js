@@ -21,59 +21,90 @@ const studentMarks = [{
     sas2101: 21
 }
 ];
-    
-let grade= '';
-let html = `
-<div class = "table">
-<table>
-    <tr id = "headrow">
-        <td id = "no"> S/NO</td>
-        <td id = "id">Student ID</td>
-        <td id = "marks"> Mean </td>
-        <td id = "grade" > Grade</td>
-    </tr>
-`;
-
-studentMarks.forEach((averageMarks) => {
-    const sum = averageMarks.ccs2102 + averageMarks.ccs2103 + averageMarks.sas2101;
-     const   average =  (sum / 3).toFixed(2);
-     grade = determineGrade(average);
-
-   html += `
-    <tr id = "${grade}">
-        <td id = "no"> ${averageMarks.no} </td>
-        <td id = "id">${averageMarks.studentId}</td>
-        <td id = "marks"> ${average}</td>
-        <td id = "grade"> ${grade}</td>
-    </tr>
-    `
-   
-});
-
-html += `  </table>
-</div>
- `
-
-console.log(html);
 
 
 
-function determineGrade(average) {
-    if (average >= 70) {
-        return 'A';
-    } else if (average >= 60) {
-        return 'B';
-    } else if (average >= 50) {
-        return 'C';
-    } else if (average >= 40) {
-        return 'D';
-    } else {
-        return 'F';
-    }
-
-    grade = determineGrade(average);
+// Function to fetch and parse the CSV file
+function fetchCSV() {
+    fetch('data.csv')
+        .then(response => response.text())
+        .then(data => {
+            const parsedData = parseCSV(data);
+            console.log(parsedData);
+            displayData(parsedData);
+        })
+        .catch(error => console.error('Error fetching the CSV file:', error));
 }
- 
+
+//Function to parse CSV data
+function parseCSV(data) {
+    const lines = data.trim().split('\n');
+    const headers = lines[0].split(',');
+
+    return lines.slice(1).map(line => {
+        const values = line.split(',');
+        const obj = {};
+        headers.forEach((header, index) => {
+            obj[header.trim()] = values[index].trim();
+        });
+        return obj;
+    });
+}
+
+// Function to display the CSV data 
+function displayData(data) {
+    let grade= '';
+    let html = `
+    <div class = "table">
+    <table>
+        <tr id = "headrow">
+            <td id = "no"> S/NO</td>
+            <td id = "id">Student ID</td>
+            <td id = "marks"> Mean </td>
+            <td id = "grade" > Grade</td>
+        </tr>
+    `;
+    
+    data.forEach((row, index) => {
+        const sum = parseInt(row.ccs2102) + parseInt(row.ccs2103) + parseInt(row.sas2101);
+         const   average =  (sum / 3).toFixed(2);
+         grade = determineGrade(average);
+    
+       html += `
+        <tr id = "${grade}">
+            <td id = "no"> ${index + 1} </td>
+            <td id = "id">${row.studentId}</td>
+            <td id = "marks"> ${average}</td>
+            <td id = "grade"> ${grade}</td>
+        </tr>
+        `;
+    });
+    
+    html += `  </table></div>
+     `;
+    
+    console.log(html);
+    
+    document.querySelector('.display-js').innerHTML = html;
+}
+
+//Function to determine the grade
+    function determineGrade(average) {
+        if (average >= 70) {
+            return 'A';
+        } else if (average >= 60) {
+            return 'B';
+        } else if (average >= 50) {
+            return 'C';
+        } else if (average >= 40) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }   
+
+// Call the fetchCSV function
+fetchCSV();
 
 
-document.querySelector('.display-js').innerHTML = html;
+
